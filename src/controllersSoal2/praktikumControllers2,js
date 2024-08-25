@@ -1,0 +1,103 @@
+// Konversi dari Celsius
+exports.celsiusToOthers = (req, res) => {
+    const { suhu, target } = req.body;
+
+    if (typeof suhu !== 'number' || !target) {
+        return res.status(400).json({ message: 'Mohon masukkan nilai suhu yang valid dan target konversi.' });
+    }
+
+    let result;
+    switch(target.toLowerCase()) {
+        case 'fahrenheit':
+            result = (suhu * 9/5) + 32;
+            break;
+        case 'kelvin':
+            result = suhu + 273.15;
+            break;
+        case 'reamur':
+            result = suhu * 4/5;
+            break;
+        default:
+            return res.status(400).json({ message: 'Target konversi tidak valid.' });
+    }
+
+    res.json({ suhu: result, satuan: target });
+};
+
+// Konversi dari Fahrenheit
+exports.fahrenheitToOthers = (req, res) => {
+    const { suhu, target } = req.body;
+
+    if (typeof suhu !== 'number' || !target) {
+        return res.status(400).json({ message: 'Mohon masukkan nilai suhu yang valid dan target konversi.' });
+    }
+
+    let result;
+    switch(target.toLowerCase()) {
+        case 'celsius':
+            result = (suhu - 32) * 5/9;
+            break;
+        case 'kelvin':
+            result = (suhu - 32) * 5/9 + 273.15;
+            break;
+        case 'reamur':
+            result = (suhu - 32) * 4/9;
+            break;
+        default:
+            return res.status(400).json({ message: 'Target konversi tidak valid.' });
+    }
+
+    res.json({ suhu: result, satuan: target });
+};
+
+// Konversi dari Kelvin
+exports.kelvinToOthers = (req, res) => {
+    const { suhu, target } = req.body;
+
+    if (typeof suhu !== 'number' || !target) {
+        return res.status(400).json({ message: 'Mohon masukkan nilai suhu yang valid dan target konversi.' });
+    }
+
+    let result;
+    switch(target.toLowerCase()) {
+        case 'celsius':
+            result = suhu - 273.15;
+            break;
+        case 'fahrenheit':
+            result = (suhu - 273.15) * 9/5 + 32;
+            break;
+        case 'reamur':
+            result = (suhu - 273.15) * 4/5;
+            break;
+        default:
+            return res.status(400).json({ message: 'Target konversi tidak valid.' });
+    }
+
+    res.json({ suhu: result, satuan: target });
+};
+
+// Konversi dari Reamur
+exports.reamurToOthers = (req, res) => {
+    const { suhu, target } = req.body;
+
+    if (typeof suhu !== 'number' || !target) {
+        return res.status(400).json({ message: 'Mohon masukkan nilai suhu yang valid dan target konversi.' });
+    }
+
+    let result;
+    switch(target.toLowerCase()) {
+        case 'celsius':
+            result = suhu * 5/4;
+            break;
+        case 'fahrenheit':
+            result = (suhu * 9/4) + 32;
+            break;
+        case 'kelvin':
+            result = (suhu * 5/4) + 273.15;
+            break;
+        default:
+            return res.status(400).json({ message: 'Target konversi tidak valid.' });
+    }
+
+    res.json({ suhu: result, satuan: target });
+};
